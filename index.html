@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAMEMAYU - Hub Ekosistem Digitalisasi Pembelajaran</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            sky: '#0284c7',
+                            teal: '#0d9488',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            bg: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        .touch-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            touch-action: manipulation;
+        }
+        .touch-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Styling Khusus Kontak Pengembang Details Menu */
+        #developerContact {
+            position: relative;
+            display: inline-block;
+        }
+        #developerContact summary {
+            list-style: none;
+            cursor: pointer;
+            display: inline-flex;
+            items-center: center;
+            gap: 0.5rem;
+            background-color: #0284c7;
+            color: #ffffff;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        #developerContact summary::-webkit-details-marker {
+            display: none;
+        }
+        #developerContact summary:hover {
+            background-color: #0369a1;
+        }
+        #developerContact summary svg {
+            width: 1.125rem;
+            height: 1.125rem;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        #developerContact .contact-menu {
+            position: absolute;
+            right: 0;
+            bottom: 100%;
+            margin-bottom: 0.5rem;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.25rem;
+            padding: 0.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            min-width: 160px;
+            z-index: 60;
+        }
+        #developerContact .contact-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.75rem;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: #334155;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+        #developerContact .contact-menu a:hover {
+            background-color: #f1f5f9;
+            color: #0284c7;
+        }
+        #developerContact .contact-menu a svg {
+            width: 1.125rem;
+            height: 1.125rem;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER / BRANDING -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm px-4 py-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Brand Logo & Title -->
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-sky-500 to-teal-500 text-white w-11 h-11 rounded-2xl flex items-center justify-center font-black text-2xl shadow-md">
+                    H
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-extrabold text-xl md:text-2xl text-slate-900 tracking-tight">HAMEMAYU</h1>
+                        <span class="bg-sky-100 text-sky-800 text-[10px] md:text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-200">
+                            Mas T Digital
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium hidden sm:block">
+                        Ekosistem Digitalisasi Pembelajaran & Supervisi Sekolah Berbantuan AI
+                    </p>
+                </div>
+            </div>
+
+            <!-- Header Action & Profile Info -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleModal()" class="bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-700 text-xs md:text-sm font-semibold px-3.5 py-2 rounded-xl transition flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-circle-info text-sky-600"></i>
+                    <span>Info HAMEMAYU</span>
+                </button>
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs md:text-sm font-bold text-slate-800">Toip, S.Pd.</p>
+                    <p class="text-[11px] text-teal-600 font-medium">SDN 3 Punung</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-4 pt-8 pb-4 text-center">
+        <div class="inline-flex flex-wrap items-center justify-center gap-2 bg-gradient-to-r from-sky-50 to-teal-50 border border-sky-200 text-sky-800 text-xs font-bold px-4 py-2 rounded-full mb-4 shadow-sm">
+            <i class="fa-solid fa-sparkles text-amber-500"></i>
+            Memayu Hayuning Bawana • Inovasi Apresiasi GTK Transformatif 2026
+        </div>
+        <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 max-w-3xl mx-auto leading-tight mb-3">
+            Pintu Masuk Terpadu Layanan Pembelajaran & Supervisi Digital
+        </h2>
+        <p class="text-xs md:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed mb-4">
+            Silakan pilih aplikasi di bawah ini untuk mengakses LMS Kelas, Asesmen CBT Online Berbantuan AI, atau Katalog Media Pembelajaran Interaktif.
+        </p>
+        <button onclick="toggleModal()" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs md:text-sm font-semibold px-4 py-2 rounded-xl transition border border-slate-300">
+            <i class="fa-solid fa-book-open text-teal-600"></i>
+            <span>Baca Selengkapnya Tentang HAMEMAYU</span>
+        </button>
+    </section>
+
+    <!-- MAIN APP INTEGRATION GRID (3 PILAR HAMEMAYU) -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+
+            <!-- APLIKASI 1: LMS KELAS -->
+            <div class="touch-card bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-lg flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-sky-100 rounded-bl-full -z-0 group-hover:scale-110 transition"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-sky-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-6">
+                        <i class="fa-solid fa-clipboard-user"></i>
+                    </div>
+                    <span class="text-[10px] font-bold tracking-wider text-sky-600 uppercase bg-sky-50 px-3 py-1 rounded-full">
+                        Administrasi & Supervisi
+                    </span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">LMS Kelas</h3>
+                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed mb-6">
+                        Platform manajemen presensi murid online, jurnal mengajar harian guru, cetak rekapitulasi bulanan otomatis, serta dasbor supervisi real-time Kepala Sekolah.
+                    </p>
+                </div>
+                <a href="https://totoip.github.io/lms-kelas/" target="_blank" rel="noopener noreferrer" 
+                   class="relative z-10 w-full bg-sky-600 hover:bg-sky-700 text-white font-semibold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 text-sm shadow-md transition touch-btn">
+                    <span>Buka LMS Kelas</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+            </div>
+
+            <!-- APLIKASI 2: CBT ONLINE (AI) -->
+            <div class="touch-card bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-lg flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-teal-100 rounded-bl-full -z-0 group-hover:scale-110 transition"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-6">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <span class="text-[10px] font-bold tracking-wider text-teal-600 uppercase bg-teal-50 px-3 py-1 rounded-full">
+                        Evaluasi & Persiapan TKA
+                    </span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">CBT Online (AI)</h3>
+                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed mb-6">
+                        Sistem ujian sumatif berbasis komputer terintegrasi API Gemini AI untuk pembuatan soal variatif otomatis guna pembiasaan tes TKA murid Kelas 5.
+                    </p>
+                </div>
+                <a href="https://s.id/cbt-online-mtd" target="_blank" rel="noopener noreferrer" 
+                   class="relative z-10 w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 text-sm shadow-md transition touch-btn">
+                    <span>Buka CBT Online</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+            </div>
+
+            <!-- APLIKASI 3: KATALOG MPI -->
+            <div class="touch-card bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-lg flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-100 rounded-bl-full -z-0 group-hover:scale-110 transition"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-6">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <span class="text-[10px] font-bold tracking-wider text-emerald-600 uppercase bg-emerald-50 px-3 py-1 rounded-full">
+                        Media & Game Interaktif
+                    </span>
+                    <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">Katalog MPI</h3>
+                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed mb-6">
+                        Galeri terbuka berisi berbagai Media Pembelajaran Interaktif & Game Layar Sentuh (IFP) gratis untuk menciptakan kelas bermakna dan pengimbasan guru.
+                    </p>
+                </div>
+                <a href="https://totoip.github.io/mtd-katalogmpi/" target="_blank" rel="noopener noreferrer" 
+                   class="relative z-10 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2 text-sm shadow-md transition touch-btn">
+                    <span>Buka Katalog MPI</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MODAL POP-UP INFO HAMEMAYU -->
+    <div id="infoModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 shadow-2xl relative border border-slate-100">
+            <!-- Close Button -->
+            <button onclick="toggleModal()" class="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-sky-600 text-white w-10 h-10 rounded-xl flex items-center justify-center text-xl font-bold">
+                    H
+                </div>
+                <div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Mengenal HAMEMAYU</h3>
+                    <p class="text-xs text-sky-600 font-medium">Inovasi Karya Apresiasi GTK Transformatif 2026</p>
+                </div>
+            </div>
+
+            <!-- Modal Body Content -->
+            <div class="space-y-4 text-xs md:text-sm text-slate-600 leading-relaxed">
+                <div class="bg-gradient-to-r from-sky-50 to-teal-50 border border-sky-100 p-4 rounded-2xl">
+                    <h4 class="font-bold text-slate-800 text-sm mb-1 text-sky-800"><i class="fa-solid fa-leaf mr-1"></i> Filosofi Nama</h4>
+                    <p>
+                        Dinamakan <strong>HAMEMAYU</strong> yang diilhami dari falsafah Jawa <em>"Memayu Hayuning Bawana"</em>, yaitu niat tulus untuk merawat, memperindah, dan menyempurnakan tatanan yang ada. Dalam inovasi ini, HAMEMAYU hadir menyempurnakan tatanan pembelajaran dan administrasi sekolah menuju era digital.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-800 mb-2"><i class="fa-solid fa-cubes text-teal-600 mr-1"></i> Kepanjangan Resmi Inovasi</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center font-medium">
+                        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+                            <span class="text-sky-600 font-bold block">HIMPUNAN APLIKASI MEDIA</span>
+                            <span class="text-[10px] text-slate-500">Katalog MPI Interaktif</span>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+                            <span class="text-teal-600 font-bold block">EVALUASI MURID</span>
+                            <span class="text-[10px] text-slate-500">CBT Online AI Gemini</span>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+                            <span class="text-emerald-600 font-bold block">ADMINISTRASI YANG UNGGUL</span>
+                            <span class="text-[10px] text-slate-500">LMS & Dasbor Supervisi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-800 mb-1"><i class="fa-solid fa-user-tie text-emerald-600 mr-1"></i> Profil Singkat Inovator</h4>
+                    <p>
+                        Dirancang dan dikembangkan oleh <strong>Toip, S.Pd.</strong>, Guru Kelas 5 SD Negeri 3 Punung, Kabupaten Pacitan. Karya ini diusung untuk kategori <strong>Apresiasi GTK Transformatif 2026</strong> pada Tema Karya: <em>Koding dan Kecerdasan Artifisial (AI)</em>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="mt-6 pt-4 border-t border-slate-100 text-right">
+                <button onclick="toggleModal()" class="bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs px-5 py-2.5 rounded-xl transition">
+                    Tutup Informasi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER / BRANDING MAS T DIGITAL & CONTACT DEVELOPER -->
+    <footer class="bg-white border-t border-slate-200 py-6 px-4 mt-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="text-sm font-bold text-slate-800">
+                    HAMEMAYU — Karya Inovasi GTK Transformatif 2026
+                </p>
+                <p class="text-xs text-slate-500">
+                    Oleh: <strong class="text-slate-700">Toip, S.Pd.</strong> (SDN 3 Punung, Pacitan)
+                </p>
+            </div>
+            
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <!-- ELEMEN DETAILS HUBUNGI PENGEMBANG -->
+                <details id="developerContact">
+                    <summary aria-label="Hubungi pengembang" title="Hubungi pengembang">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg>
+                        <span class="contact-label">Hubungi pengembang</span>
+                    </summary>
+                    <nav class="contact-menu" aria-label="Media sosial Mas T Digital">
+                        <a class="social-instagram" href="https://www.instagram.com/totoip14/" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+                            <span>Instagram</span>
+                        </a>
+                        <a class="social-tiktok" href="https://www.tiktok.com/@totoip14" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.2a4.2 4.2 0 1 1-3.3-4.1M14 3c.5 3.1 2.4 5 5.5 5.3"/></svg>
+                            <span>TikTok</span>
+                        </a>
+                        <a class="social-youtube" href="https://www.youtube.com/@totoip" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.5a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.5a2.5 2.5 0 0 0 1.8-1.8C22 15.2 22 12 22 12z"/><path d="m10 9 5 3-5 3z"/></svg>
+                            <span>YouTube</span>
+                        </a>
+                        <a class="social-threads" href="https://www.threads.com/@totoip14" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-5.2 0-8.5-3.6-8.5-9S6.8 3 12 3c4.5 0 7.4 2.5 8.1 6.2M8.1 8.3c.7-1.1 2-1.7 3.8-1.7 3.2 0 5.3 2.1 5.3 5.4 0 3.4-1.9 5.7-4.9 5.7-2.1 0-3.5-1.1-3.5-2.9 0-1.6 1.2-2.7 3-2.7 2.8 0 5.1 1.2 6.5 3.1"/></svg>
+                            <span>Threads</span>
+                        </a>
+                        <a class="social-lynk" href="https://lynk.id/totoip" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13.5 14 9.5M8.5 15l-1 1a3.5 3.5 0 0 1-5-5l4-4a3.5 3.5 0 0 1 5 0M15.5 9l1-1a3.5 3.5 0 0 1 5 5l-4 4a3.5 3.5 0 0 1-5 0"/></svg>
+                            <span>Lynk</span>
+                        </a>
+                    </nav>
+                </details>
+
+                <!-- Watermark / Label Mas T Digital -->
+                <div class="inline-flex items-center gap-2 bg-slate-100 border border-slate-200 px-3.5 py-1.5 rounded-2xl">
+                    <i class="fa-solid fa-code text-sky-600 text-xs"></i>
+                    <span class="text-xs font-semibold text-slate-700">Dibuat oleh <strong class="text-sky-600">Mas T Digital</strong></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT MODAL & DETAILS CONTROLLER -->
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Tutup modal / popup jika mengklik area luar box
+        window.onclick = function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        };
+
+        // Otomatis menutup menu kontak media sosial ketika pengguna mengeklik di luar menu kontak
+        document.addEventListener('click', function(e) {
+            const devContact = document.getElementById('developerContact');
+            if (devContact && devContact.open && !devContact.contains(e.target)) {
+                devContact.open = false;
+            }
+        });
+    </script>
+</body>
+</html>
